@@ -50,3 +50,5 @@ class DetailApplicationView(APIView):
         phone=phone
         )
         return Response(status=status.HTTP_200_OK)
+
+# jgfkdlj
