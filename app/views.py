@@ -2,9 +2,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
+from rest_framework import exceptions
 
 from app.models import Application
 from app.serializer import CreateApplicationSerializer, DetailApplicationSerializer
+from app.exceptions import error_exception, ErrorCodes
 
 
 class CreateApplicationView(APIView):
@@ -27,7 +29,7 @@ class CreateApplicationView(APIView):
             phone=phone,
             category=category
         )
-        return Response({'msg': "Success"})
+        return Response({'msg': "Success"}, status=status.HTTP_200_OK)
 
 
 class DetailApplicationView(APIView):
@@ -43,11 +45,12 @@ class DetailApplicationView(APIView):
         Application.objects.filter(
             phone=phone
         )
-
-        if not phone:
-            return Response({"msg": "Bunday ma'limot yuq"})
-        Application.objects.get(
-        phone=phone
-        )
-        return Response(status=status.HTTP_200_OK)
-
+        try:
+            Application.objects.get(
+                phone=phone
+            )
+        except Application.DoesNotExist:
+            raise error_exception(
+                exceptions.NotFound,
+                ErrorCodes.OBJECT_NOT_FOUND
+            )
