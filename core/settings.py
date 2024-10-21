@@ -62,6 +62,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django.middleware.common.CommonMiddleware",
 ]
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'core.urls'
 
@@ -154,6 +155,3 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=90),
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=90),
 }
-
-CORS_ALLOW_ALL_ORIGINS = ['*']
-
