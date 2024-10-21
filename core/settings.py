@@ -167,5 +167,13 @@ CORS_ALLOWED_ORIGINS = [
 
     "http://localhost:8080",
     "http://127.0.0.1:9000",
-    "https://husidev007.pythonanywhere.com/"
+    "https://husidev007.pythonanywhere.com/",
 ]
+CORS_ALLOW_HEADERS = (
+    "accept",
+    "authorization",
+    "content-type",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+)
