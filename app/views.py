@@ -29,7 +29,7 @@ class CreateApplicationView(APIView):
             phone=phone,
             category=category
         )
-        return Response({'msg': "Success"}, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_200_OK)
 
 
 class DetailApplicationView(APIView):
