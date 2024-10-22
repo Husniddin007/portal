@@ -38,13 +38,13 @@ class DetailApplicationView(APIView):
         request=DetailApplicationSerializer,
         responses=status.HTTP_200_OK
     )
-    def post(self, request):
+    def get(self, request):
         serializer = DetailApplicationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         phone = serializer.validated_data['phone']
         Application.objects.filter(
             phone=phone
-        )
+        ).first()
         try:
             Application.objects.get(
                 phone=phone

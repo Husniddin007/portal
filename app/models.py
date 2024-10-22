@@ -15,7 +15,7 @@ class Application(models.Model):
     jshshir = models.CharField(max_length=14, blank=True, null=True)
     phone = models.CharField(max_length=13)
     status = models.BooleanField(default=False)
-    date = models.DateTimeField(auto_now_add=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
