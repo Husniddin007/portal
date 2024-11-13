@@ -30,7 +30,7 @@ class CreateApplicationView(APIView):
             series=series,
             jshshir=jshshir,
             phone=phone,
-            category=category
+            category=category,
         )
         return Response(status=status.HTTP_200_OK)
 
