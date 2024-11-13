@@ -9,19 +9,16 @@ class CreateApplicationSerializer(serializers.ModelSerializer):
         fields = [
             'name',
             'surname',
+            'series',
+            'jshshir',
             'phone',
             'category',
         ]
-class DetailApplicationSerializer(serializers.Serializer):
-    phone = serializers.CharField(max_length=13)
-    # class Meta:
-    #     model = Application
-    #     fields = [
-    #         'name',
-    #         'surname',
-    #         'series',
-    #         'jshshir'
-    #         'phone',
-    #         'data_joined',
-    #         'category',
-    #     ]
+
+
+
+class DetailApplicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Application
+
+

@@ -1,12 +1,12 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
-from rest_framework import exceptions
 
 from app.models import Application
 from app.serializer import CreateApplicationSerializer, DetailApplicationSerializer
-from app.exceptions import error_exception, ErrorCodes
+
 
 
 class CreateApplicationView(APIView):
@@ -22,8 +22,7 @@ class CreateApplicationView(APIView):
         surname = serializer.validated_data['surname']
         phone = serializer.validated_data['phone']
         category = serializer.validated_data['category']
-
-        Application.objects.create(
+        Application.objects.get_or_create(
             name=name,
             surname=surname,
             phone=phone,
@@ -38,19 +37,8 @@ class DetailApplicationView(APIView):
         request=DetailApplicationSerializer,
         responses=status.HTTP_200_OK
     )
-    def get(self, request):
-        serializer = DetailApplicationSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        phone = serializer.validated_data['phone']
-        Application.objects.filter(
-            phone=phone
-        ).first()
-        try:
-            Application.objects.get(
-                phone=phone
-            )
-        except Application.DoesNotExist:
-            raise error_exception(
-                exceptions.NotFound,
-                ErrorCodes.OBJECT_NOT_FOUND
-            )
+    def post(self, request):
+        phone = request.query_params.get('phone')
+        application = get_object_or_404(Application, phone=phone)
+        serializer = DetailApplicationSerializer(application)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
