@@ -22,7 +22,7 @@ admin.site.register(Category, CategoryAdmin)
 
 #
 class ApplicationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'surname', 'series', 'jshshir', 'phone', 'category',)
+    list_display = ('name', 'surname', 'series', 'jshshir', 'phone', 'category','date_joined',)
     list_display_links = ('name', 'surname', 'phone', 'category',)
 
 
