@@ -12,6 +12,7 @@ class CreateApplicationSerializer(serializers.ModelSerializer):
             'series',
             'jshshir',
             'phone',
+            'date_joined',
             'category',
         ]
 
@@ -20,5 +21,6 @@ class CreateApplicationSerializer(serializers.ModelSerializer):
 class DetailApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
+        fields = ['phone']
 
 

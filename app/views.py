@@ -22,9 +22,13 @@ class CreateApplicationView(APIView):
         surname = serializer.validated_data['surname']
         phone = serializer.validated_data['phone']
         category = serializer.validated_data['category']
+        series = serializer.validated_data['series']
+        jshshir = serializer.validated_data['jshshir']
         Application.objects.get_or_create(
             name=name,
             surname=surname,
+            series=series,
+            jshshir=jshshir,
             phone=phone,
             category=category
         )
