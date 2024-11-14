@@ -22,7 +22,7 @@ class CreateApplicationView(APIView):
         surname = serializer.validated_data['surname']
         phone = serializer.validated_data['phone']
         if not re.match('[+0-9]',phone):
-            return Response("tsetttt")
+            return Response(status=status.HTTP_400_BAD_REQUEST)
         category = serializer.validated_data['category']
         series = serializer.validated_data['series']
         jshshir = serializer.validated_data['jshshir']
