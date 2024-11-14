@@ -17,10 +17,7 @@ class CreateApplicationSerializer(serializers.ModelSerializer):
         ]
 
 
-
 class DetailApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
         fields = ['phone']
-
-

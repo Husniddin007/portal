@@ -1,4 +1,5 @@
-from django.shortcuts import get_object_or_404
+import re
+from django.shortcuts import get_object_or_404, resolve_url
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from drf_spectacular.utils import extend_schema
@@ -6,7 +7,6 @@ from rest_framework import status
 
 from app.models import Application
 from app.serializer import CreateApplicationSerializer, DetailApplicationSerializer
-
 
 
 class CreateApplicationView(APIView):
@@ -21,6 +21,8 @@ class CreateApplicationView(APIView):
         name = serializer.validated_data['name']
         surname = serializer.validated_data['surname']
         phone = serializer.validated_data['phone']
+        if not re.match('[+0-9]',phone):
+            return Response("tsetttt")
         category = serializer.validated_data['category']
         series = serializer.validated_data['series']
         jshshir = serializer.validated_data['jshshir']

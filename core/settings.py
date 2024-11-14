@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'jazzmin',
     "corsheaders",
+    'phonenumber_field',
 
     'django.contrib.admin',
     'django.contrib.auth',
